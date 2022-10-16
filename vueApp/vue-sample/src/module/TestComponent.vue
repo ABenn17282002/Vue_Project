@@ -1,6 +1,7 @@
 <template>
   <div class="red-b">
     <div class="border__blue">SCSSのテストです</div>
+    <div class="background__primary">SCSSグローバルテストです</div>
     テストです。
     {{ testData }}
   </div>
@@ -30,5 +31,9 @@ export default {
   &__blue {
     border: 1px blue solid;
   }
+}
+
+.background__primary {
+  background-color: $color-primary;
 }
 </style>
