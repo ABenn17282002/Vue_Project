@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import BookList from "../views/BookList.vue";
 import BookDetail from "@/components/BookDetail.vue";
+import Item from "../views/ItemView.vue";
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,11 @@ const routes: Array<RouteConfig> = [
       title: route.params.title,
       content: route.params.content,
     }),
+  },
+  {
+    path:"/item/:id",
+    name:"Item",
+    component:Item
   },
 ];
 
