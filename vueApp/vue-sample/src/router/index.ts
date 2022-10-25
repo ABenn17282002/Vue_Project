@@ -4,7 +4,10 @@ import HomeView from "../views/HomeView.vue";
 import BookList from "../views/BookList.vue";
 import BookDetail from "@/components/BookDetail.vue";
 import Item from "../views/ItemView.vue";
-import NotFound from '@/components/NotFound.vue'
+import NotFound from '@/components/NotFound.vue';
+import User from "../views/UserView.vue";
+import UserProfile from '@/components/UserProfile.vue';
+import UserPost from '@/components/UserPost.vue';
 
 Vue.use(VueRouter);
 
@@ -48,6 +51,20 @@ const routes: Array<RouteConfig> = [
     // redirect:"/"
     name:"NotFound",
     component:NotFound,
+  },
+  {
+    path:"/user",
+    component:User,
+    children:[
+      {
+        path:"profile",
+        component:UserProfile
+      },
+      {
+        path:"post",
+        component:UserPost
+      },
+    ]
   }
 ];
 
