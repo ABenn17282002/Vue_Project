@@ -4,11 +4,11 @@ import HomeView from "../views/HomeView.vue";
 import BookList from "../views/BookList.vue";
 import BookDetail from "@/components/BookDetail.vue";
 import Item from "../views/ItemView.vue";
-import NotFound from '@/components/NotFound.vue';
+import NotFound from "@/components/NotFound.vue";
 import User from "../views/UserView.vue";
-import UserProfile from '@/components/UserProfile.vue';
-import UserPost from '@/components/UserPost.vue';
-import HomeSub from '@/components/HomeSub.vue';
+import UserProfile from "@/components/UserProfile.vue";
+import UserPost from "@/components/UserPost.vue";
+import HomeSub from "@/components/HomeSub.vue";
 
 Vue.use(VueRouter);
 
@@ -16,10 +16,10 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "home",
-    components:{
-      default:HomeView,
-      sub:HomeSub,
-    } 
+    components: {
+      default: HomeView,
+      sub: HomeSub,
+    },
   },
   {
     path: "/about",
@@ -46,36 +46,45 @@ const routes: Array<RouteConfig> = [
     }),
   },
   {
-    path:"/item/:id",
-    name:"Item",
-    component:Item
+    path: "/item/:id",
+    name: "Item",
+    component: Item,
+    // beforeEnter(()=>{
+
+    // })
   },
   {
-    path:"*",
+    path: "*",
     // redirect:"/"
-    name:"NotFound",
-    component:NotFound,
+    name: "NotFound",
+    component: NotFound,
   },
   {
-    path:"/user",
-    component:User,
-    children:[
+    path: "/user",
+    component: User,
+    children: [
       {
-        path:"profile",
-        component:UserProfile
+        path: "profile",
+        component: UserProfile,
       },
       {
-        path:"post",
-        component:UserPost
+        path: "post",
+        component: UserPost,
       },
-    ]
-  }
+    ],
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  console.log(from);
+  next();
 });
 
 export default router;
