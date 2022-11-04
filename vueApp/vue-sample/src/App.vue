@@ -1,24 +1,65 @@
 <template>
   <v-app>
-    <HeaderView/>
+    <HeaderView />
     <v-main>
-      <router-view />
+      <v-container>
+        <router-view @add-book-list="addBook" />
+      </v-container>
     </v-main>
-    <FooterView/>
+    <FooterView />
   </v-app>
 </template>
 
 <script>
-import HeaderView from '@/global/HeaderView.vue';
-import FooterView from '@/global/FooterView.vue';
+import HeaderView from "@/global/HeaderView.vue";
+import FooterView from "@/global/FooterView.vue";
+const STORAGE_KEY = "books";
 
 export default {
-  
   name: "App",
 
-  components: { 
+  components: {
     HeaderView,
-    FooterView, 
+    FooterView,
+  },
+  data() {
+    return {
+      books: [],
+      newBook: null,
+    };
+  },
+  mounted() {
+    if (localStorage.getItem(STORAGE_KEY)) {
+      try {
+        this.books = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      } catch (e) {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+  },
+  methods: {
+    addBook(e) {
+      console.log(e);
+      // 実際に何かしたことを入力する
+      this.books.push({
+        id: this.books.length,
+        title: e.title,
+        image: e.image,
+        description: e.description,
+        readData: "",
+        memo: "",
+      });
+      // this.newBook = "";
+      this.saveBooks();
+    },
+    removeBook(x) {
+      this.books.splice(x, 1);
+      this.saveBooks();
+    },
+    saveBooks() {
+      const parsed = JSON.stringify(this.books);
+      localStorage.setItem(STORAGE_KEY, parsed);
+    },
   },
 };
 </script>
