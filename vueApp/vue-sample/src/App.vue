@@ -50,7 +50,7 @@ export default {
         title: e.title,
         image: e.image,
         description: e.description,
-        readData: "",
+        readDate: "",
         memo: "",
       });
       // this.newBook = "";
@@ -70,7 +70,7 @@ export default {
     updateBookInfo(e) {
       const updateInfo = {
         id: e.id,
-        readData: e.readData,
+        readDate: e.readDate,
         memo: e.memo,
         title: this.books[e.id].title,
         image: this.books[e.id].image,
