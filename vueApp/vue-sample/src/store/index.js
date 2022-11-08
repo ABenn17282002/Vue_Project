@@ -13,6 +13,10 @@ export default new Vuex.Store({
     increment(state) {
       state.count++;
     },
+    addCount(state, payload) {
+      // 第2引数はオブジェクト
+      state.count += payload.value;
+    },
   },
   actions: {},
   modules: {},
