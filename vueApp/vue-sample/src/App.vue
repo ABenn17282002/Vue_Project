@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link>
     </nav>
     <router-view />
+    <button @click="setLogin">ログイン名表示</button>
     {{ $store.state.count }}
     <br />
     <ul>
@@ -18,7 +19,15 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
+  methods: {
+    ...mapActions("auth", ["setLoginFruit"]),
+    setLogin() {
+      this.setLoginFruit({ name: "シャインマスカット" });
+    },
+  },
   computed: {
     visibleFruits() {
       return this.$store.getters.visibleFruits;
