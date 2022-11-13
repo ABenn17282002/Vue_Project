@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import ChlidrenView from "@/views/ChlidrenView";
+import TeleportTest from "@/views/TeleportTest";
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: "/children",
     name: "ChlidrenView",
     component: ChlidrenView,
+  },
+  {
+    path: "/teleport-test",
+    name: "TeleportTest",
+    component: TeleportTest,
   },
   {
     path: "/about",
