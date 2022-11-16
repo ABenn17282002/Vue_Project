@@ -4,9 +4,10 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/children">Children</router-link> |
     <router-link to="/teleport-test">Teleport</router-link> |
-    <router-link to="/composition-test">Composition</router-link>
+    <router-link to="/composition-test">Composition</router-link> |
+    <router-link to="/props-emit-test">PropsEmitTest</router-link>
   </nav>
-  <router-view />
+  <router-view :setupBooks="setupBooks" :dataBooks="dataBooks" />
 </template>
 
 <style>
@@ -33,8 +34,38 @@ nav a.router-link-exact-active {
 </style>
 
 <script>
+import { reactive } from "@vue/reactivity";
 export default {
-  data() {},
+  setup() {
+    const setupBooks = reactive([
+      {
+        title: "dataタイトル1",
+        author: "data著書1",
+      },
+      {
+        title: "dataタイトル2",
+        author: "data著書2",
+      },
+    ]);
+
+    return {
+      setupBooks,
+    };
+  },
+  data() {
+    return {
+      dataBooks: [
+        {
+          title: "dataタイトル1",
+          author: "data著書1",
+        },
+        {
+          title: "dataタイトル2",
+          author: "data著書2",
+        },
+      ],
+    };
+  },
   provide() {
     return {
       userName: "親で設定した値",
