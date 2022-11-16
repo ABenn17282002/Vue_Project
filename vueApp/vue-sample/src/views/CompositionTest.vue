@@ -16,7 +16,15 @@
 </template>
 
 <script>
-import { computed, reactive, ref, toRefs, watch, watchEffect } from "vue";
+import {
+  computed,
+  reactive,
+  ref,
+  toRefs,
+  watch,
+  watchEffect,
+  onMounted,
+} from "vue";
 export default {
   setup() {
     let name = "水谷";
@@ -57,6 +65,10 @@ export default {
     const searchEffect = ref("");
     watchEffect(() => {
       console.log(`watchEffect:${searchEffect.value}`);
+    });
+
+    onMounted(() => {
+      console.log("onMounted");
     });
 
     console.log("setup");
