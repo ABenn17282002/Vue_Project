@@ -9,11 +9,12 @@
     <p>reactiveToRefs:{{ titleRef }}</p>
     <p>reactiveToRefs:{{ authorRef[1] }}</p>
     <button @click="btnClick">クリック</button>
+    <p>computed:{{ totalPrice }}</p>
   </div>
 </template>
 
 <script>
-import { reactive, ref, toRefs } from "vue";
+import { computed, reactive, ref, toRefs } from "vue";
 export default {
   setup() {
     let name = "水谷";
@@ -35,6 +36,15 @@ export default {
       console.log(e);
     };
 
+    const item = reactive({
+      price: 100,
+      number: 1,
+    });
+
+    const totalPrice = computed(() => {
+      return item.price * item.number;
+    });
+
     console.log("setup");
     // console.logで出力するとundefinedになる(thisは使えない)
     console.log(this);
@@ -48,6 +58,8 @@ export default {
       book,
       ...toRefs(booktoRefs),
       btnClick,
+      item,
+      totalPrice,
     };
   },
   data() {
