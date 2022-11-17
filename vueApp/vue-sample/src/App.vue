@@ -1,13 +1,19 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/children">Children</router-link> |
-    <router-link to="/teleport-test">Teleport</router-link> |
-    <router-link to="/composition-test">Composition</router-link> |
-    <router-link to="/props-emit-test">PropsEmitTest</router-link>
-  </nav>
-  <router-view :setupBooks="setupBooks" :dataBooks="dataBooks" />
+  <div>
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/children">Children</router-link> |
+      <router-link to="/teleport-test">Teleport</router-link> |
+      <router-link to="/composition-test">Composition</router-link> |
+      <router-link to="/props-emit-test">PropsEmitTest</router-link>
+    </nav>
+    <router-view
+      :setupBooks="setupBooks"
+      :dataBooks="dataBooks"
+      @custom-event="parentMethod"
+    />
+  </div>
 </template>
 
 <style>
@@ -65,6 +71,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    parentMethod(e) {
+      console.log(e);
+    },
   },
   provide() {
     return {
